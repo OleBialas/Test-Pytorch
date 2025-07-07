@@ -38,19 +38,14 @@ from torch.utils.data import Dataset
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 import matplotlib.pyplot as plt
+
 # %%
 training_data = datasets.FashionMNIST(
-    root="data",
-    train=True,
-    download=True,
-    transform=ToTensor()
+    root="data", train=True, download=True, transform=ToTensor()
 )
 
 test_data = datasets.FashionMNIST(
-    root="data",
-    train=False,
-    download=True,
-    transform=ToTensor()
+    root="data", train=False, download=True, transform=ToTensor()
 )
 # %%
 labels_map = {
@@ -94,3 +89,20 @@ print(f"Label: {label}")
 print(train_features.shape)
 print(train_labels.shape)
 # %%
+import torch
+from torchvision import datasets
+from torchvision.transforms import ToTensor, Lambda
+
+ds = datasets.FashionMNIST(
+    root="data",
+    train=True,
+    download=True,
+    transform=ToTensor(),
+    target_transform=Lambda(
+        lambda y: torch.zeros(10, dtype=torch.float).scatter_(
+            0, torch.tensor(y), value=1
+        )
+    ),
+)
+# label: 8
+# becomes: [0, 0, 0, 0 ,0 ,0 ,0, 1, 0, 0]
