@@ -34,3 +34,15 @@ class NeuralNetwork(nn.Module):
         logits = self.linear_relu_stack(x)
         return logits
 # %%
+model = NeuralNetwork().to(device)
+print(model)
+# %%
+X, _train_labels = next(iter(train_dataloader))
+X = X.to(device)
+logits = model(X)
+pred_probab = nn.Softmax(dim=1)(logits)
+y_pred = pred_probab.argmax(1)
+print(f"Predicted class: {y_pred}")
+# %%
+print(pred_probab)
+# %%
