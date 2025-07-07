@@ -26,11 +26,11 @@ train_data = datasets.FashionMNIST(
     train=True,
     download=True,
     transform=ToTensor(),
-    target_transform=Lambda(
-        lambda y: torch.zeros(10, dtype=torch.float).scatter_(
-            0, torch.tensor(y), value=1
-        )
-    ),
+    # target_transform=Lambda(
+    #     lambda y: torch.zeros(10, dtype=torch.float).scatter_(
+    #         0, torch.tensor(y), value=1
+    #     )
+    # ),
 )
 
 test_data = datasets.FashionMNIST(
@@ -38,11 +38,11 @@ test_data = datasets.FashionMNIST(
     train=False,
     download=True,
     transform=ToTensor(),
-    target_transform=Lambda(
-        lambda y: torch.zeros(10, dtype=torch.float).scatter_(
-            0, torch.tensor(y), value=1
-        )
-    ),
+    # target_transform=Lambda(
+    #     lambda y: torch.zeros(10, dtype=torch.float).scatter_(
+    #         0, torch.tensor(y), value=1
+    #     )
+    # ),
 )
 
 
