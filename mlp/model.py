@@ -46,3 +46,5 @@ print(f"Predicted class: {y_pred}")
 # %%
 print(pred_probab)
 # %%
+loss = torch.nn.functional.binary_cross_entropy_with_logits(pred_probab.to('cpu'), _train_labels)
+loss
